@@ -1,0 +1,75 @@
+ext {
+    //有重用的地方写在这里面，保证代码一致
+    android = [compileSdkVersion        : 28,
+               buildToolsVersion        : "28.0.3",
+               minSdkVersion            : 19,
+               targetSdkVersion         : 28,
+               versionCode              : 10,
+               versionName              : "1.0.0",
+               appcompatVersion         : "1.1.0-alpha01",
+               cardviewVersion          : "1.0.0",
+               materialVersion          : "1.1.0-alpha02",
+               vectordrawableVersion    : "1.1.0-alpha01",
+               junitVersion             : "4.12",
+               runnerVersion            : "1.1.1",
+               espressoVersion          : "3.1.1",
+               retrofitVersion          : "2.5.0",
+               rxjavaVersion            : "2.2.5",
+               rxandroidVersion         : "2.1.0",
+               rxkotlinVersion          : "2.3.0",
+               butterknifeVersion       : "10.0.0",
+               loggingInterceptorVersion: "3.9.0",
+               glidVersion              : "4.8.0",
+               eventBusVersion          : "3.1.1",
+               gsonVersion              : "2.8.5",
+               leakCanaryDebugVersion   : "leakcanary-android:1.6.3",
+               leakCanaryReleaseVersion : "leakcanary-android-no-op:1.6.3",
+               smartRefreshVersion      : "1.0.5.1",
+               vlayoutVersion           : "1.2.8@aar",
+               buglyVersion             : "2.8.6",
+               constraintlayoutVersion  : "2.0.0-alpha3",
+    ]
+    dependencies = [
+            "appcompat"          : "androidx.appcompat:appcompat:${android.appcompatVersion}",
+            "cardView"           : "androidx.cardview:cardview:${android.cardviewVersion}",
+            "meterial"           : "com.google.android.material:material:${android.materialVersion}",
+            "vectordrawable"     : "androidx.vectordrawable:vectordrawable:${android.vectordrawableVersion}",
+            "junit"              : "junit:junit:${android.junitVersion}",
+            "runner"             : "androidx.test:runner:${android.runnerVersion}",
+            "espresso"           : "androidx.test.espresso:espresso-core:${android.espressoVersion}",
+            "constraintlayout"   : "androidx.constraintlayout:constraintlayout:${android.constraintlayoutVersion}",
+
+            //网络
+            "rxjava"             : "io.reactivex.rxjava2:rxjava:${android.rxjavaVersion}",
+            "rxandroid"          : "io.reactivex.rxjava2:rxandroid:${android.rxandroidVersion}",
+            "rxkotlin"           : "io.reactivex.rxjava2:rxkotlin:${android.rxkotlinVersion}",
+
+            "butterknife"        : "com.jakewharton:butterknife:${android.butterknifeVersion}",
+            "butterknifeCompiler": "com.jakewharton:butterknife-compiler:${android.butterknifeVersion}",
+            "retrofit"           : "com.squareup.retrofit2:retrofit:${android.retrofitVersion}",
+            "gsonConverter"      : "com.squareup.retrofit2:converter-gson:${android.retrofitVersion}",
+            "rxjavaAdapter"      : "com.squareup.retrofit2:adapter-rxjava2:${android.retrofitVersion}",
+
+            "loggingInterceptor" : "com.squareup.okhttp3:logging-interceptor:${android.loggingInterceptorVersion}",
+            "okhttpUrlconnection": "com.squareup.okhttp3:okhttp-urlconnection:${android.loggingInterceptorVersion}",
+
+            //图片
+            "glide"              : "com.github.bumptech.glide:glide:${android.glidVersion}",
+            "glideCompiler"      : "com.github.bumptech.glide:compiler:${android.glidVersion}",
+
+            "eventbus"           : "org.greenrobot:eventbus:${android.eventBusVersion}",
+            "gson"               : "com.google.code.gson:gson:${android.gsonVersion}",
+
+            //内存泄漏
+            "leakcanaryDebug"    : "com.squareup.leakcanary:${android.leakCanaryDebugVersion}",
+            "leakcanaryRelease"  : "com.squareup.leakcanary:${android.leakCanaryReleaseVersion}",
+            "SmartRefreshLayout" : "com.scwang.smartrefresh:SmartRefreshLayout:${android.smartRefreshVersion}",
+
+            "vlayout"            : "com.alibaba.android:vlayout:${android.vlayoutVersion}",
+            "bugly"              : "com.tencent.bugly:crashreport:${android.buglyVersion}",
+
+            //ARouter
+            "arouter-api"            : "com.alibaba:arouter-api:1.4.1",//ARouter api
+            "arouter-compiler"       : "com.alibaba:arouter-compiler:1.2.2",//ARouter
+    ]
+}
