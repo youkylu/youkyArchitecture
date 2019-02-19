@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.constant.Constant
 import com.example.commonlib.event.NetworkChangeEvent
 import com.example.commonlib.util.Preference
@@ -79,6 +80,7 @@ abstract class BaseFragment  : Fragment(){
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        ARouter.getInstance().inject(this)
         return inflater?.inflate(attachLayoutRes(), null)
     }
 

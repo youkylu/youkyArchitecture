@@ -2,8 +2,8 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_checked="true"
-          android:drawable="@mipmap/my_icon" /><!--选中时效果-->
+          android:drawable="@mipmap/service_icon" /><!--选中时效果-->
     <item android:state_checked="false"
-          android:drawable="@mipmap/my_icon" /><!--未选中时效果-->
+          android:drawable="@mipmap/service_icon" /><!--未选中时效果-->
 
 </selector>

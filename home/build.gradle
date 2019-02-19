@@ -53,4 +53,5 @@ dependencies {
 
     kapt  rootProject.ext.dependencies["arouter-compiler"]
     implementation rootProject.ext.dependencies["arouter-api"]
+    implementation project(path: ':commonLib')
 }

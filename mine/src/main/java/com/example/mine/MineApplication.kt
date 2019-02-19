@@ -1,22 +1,20 @@
-package com.example.junjie.youkyarchitecture
+package com.example.mine
 
 import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.base.BaseApplication
 
 /**
- *
- * Class: com.example.junjie.youkyarchitecture.ArchitectureApplication
- *
- * Description:
+ * <p>Class: com.example.mine.MineApplication</p>
+ * <p>Description: </p>
  * <pre>
  *
-</pre> *
+ * </pre>
  *
  * @author lujunjie
- * @date 2019/2/15/15:45
+ * @date 2019/2/19/11:18
  */
 
-class ArchitectureApplication : BaseApplication(){
+class MineApplication : BaseApplication(){
 
     private val debug = true
 

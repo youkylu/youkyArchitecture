@@ -2,14 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/project_main_navigation_home"
+            android:id="@+id/navigation_home"
             android:icon="@drawable/home_icon_selector"
             android:title="@string/title_home" />
 
     <item
-            android:id="@+id/project_main_navigation_records_management"
+            android:id="@+id/navigation_main"
+            android:icon="@drawable/mine_icon_selector"
+            android:title="@string/title_main" />
+
+
+    <item
+            android:id="@+id/navigation_mine"
             android:icon="@drawable/mine_icon_selector"
             android:title="@string/title_mine" />
-
 
 </menu>

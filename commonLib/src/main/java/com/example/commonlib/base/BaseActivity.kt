@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.alibaba.android.arouter.launcher.ARouter
 import com.example.commonlib.R
 import com.example.commonlib.constant.Constant
 import com.example.commonlib.event.NetworkChangeEvent
@@ -72,16 +73,14 @@ abstract class BaseActivity : AppCompatActivity() {
      * 布局文件id
      */
     protected abstract fun attachLayoutRes(): Int
-
-    /**
-     * 初始化 View
-     */
-    abstract fun initView()
     /**
      * 初始化数据
      */
     abstract fun initData()
-
+    /**
+     * 初始化 View
+     */
+    abstract fun initView(savedInstanceState: Bundle?)
     /**
      * 开始请求
      */
@@ -117,8 +116,9 @@ abstract class BaseActivity : AppCompatActivity() {
         if (useEventBus()) {
             EventBus.getDefault().register(this)
         }
-        initView()
+        ARouter.getInstance().inject(this)
         initData()
+        initView(savedInstanceState)
         initTipView()
 
         start()
@@ -161,7 +161,6 @@ abstract class BaseActivity : AppCompatActivity() {
         mLayoutParams.y = 0
         mLayoutParams.windowAnimations = R.style.anim_float_view // add animations
     }
-
 
 
     open val mRetryClickListener: View.OnClickListener = View.OnClickListener {
@@ -253,4 +252,6 @@ abstract class BaseActivity : AppCompatActivity() {
             mWindowManager.removeView(mTipView)
         }
     }
+
+
 }
