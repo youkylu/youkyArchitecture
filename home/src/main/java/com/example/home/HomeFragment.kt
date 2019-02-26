@@ -1,5 +1,6 @@
 package com.example.home
 
+import android.content.Intent
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -20,14 +21,15 @@ import kotlinx.android.synthetic.main.home_home_fragment.*
  * @date 2019/2/18/15:07
  */
 @Route(path = ARouterUrlConstant.HOME_FRAGMENT)
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(),View.OnClickListener{
+
 
     @JvmField
     @Autowired
     var content: String? = null
 
     @JvmField
-    @Autowired()
+    @Autowired
     var times: Int = 0
 
     override fun attachLayoutRes(): Int {
@@ -39,7 +41,16 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun lazyLoad() {
+        home_home_fragment_video_tv.setOnClickListener(this)
+    }
 
+    override fun onClick(v: View) {
+        when(v.id){
+            R.id.home_home_fragment_video_tv->startActivity(Intent(activity, VideoActivity::class.java))
+            else->{
+
+            }
+        }
     }
 
 }

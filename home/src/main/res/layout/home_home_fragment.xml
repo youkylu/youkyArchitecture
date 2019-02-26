@@ -6,7 +6,13 @@
 
     <TextView
             android:id="@+id/home_home_fragment_content_tv"
-            android:layout_width="match_parent" android:layout_height="match_parent"
-              android:text="home fragment"/>
+            android:layout_width="match_parent" android:layout_height="50dp"
+              android:text="home fragment"
+    android:gravity="center"/>
+    <TextView
+            android:id="@+id/home_home_fragment_video_tv"
+            android:layout_width="match_parent" android:layout_height="50dp"
+            android:text="video"
+            android:gravity="center"/>
 
 </LinearLayout>

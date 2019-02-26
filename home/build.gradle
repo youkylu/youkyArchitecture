@@ -24,6 +24,17 @@ android {
        
     }
 
+    sourceSets {
+        main {
+            // 独立运行与集成调试时使用不同的 AndroidManifest.xml 文件
+            if (!isNeedHomeModule.toBoolean()) {
+                manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -54,4 +65,9 @@ dependencies {
     kapt  rootProject.ext.dependencies["arouter-compiler"]
     implementation rootProject.ext.dependencies["arouter-api"]
     implementation project(path: ':commonLib')
+
+    implementation rootProject.ext.dependencies["jiaoZiVideoPlayer"]
+
+    implementation rootProject.ext.dependencies["glide"]
+    kapt  rootProject.ext.dependencies["glideCompiler"]
 }

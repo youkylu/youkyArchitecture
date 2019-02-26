@@ -69,7 +69,9 @@ ext {
             "bugly"              : "com.tencent.bugly:crashreport:${android.buglyVersion}",
 
             //ARouter
-            "arouter-api"            : "com.alibaba:arouter-api:1.4.1",//ARouter api
-            "arouter-compiler"       : "com.alibaba:arouter-compiler:1.2.2",//ARouter
+            "arouter-api"        : "com.alibaba:arouter-api:1.4.1",//ARouter api
+            "arouter-compiler"   : "com.alibaba:arouter-compiler:1.2.2",//ARouter
+
+            "jiaoZiVideoPlayer"  : "cn.jzvd:jiaozivideoplayer:6.4.1",
     ]
 }

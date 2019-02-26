@@ -4,8 +4,15 @@
     <color name="colorPrimaryDark">#C2185B</color>
     <color name="colorAccent">@color/Cyan</color>
     <color name="textColorPrimary">#616161</color>
-
-
+    <color name="white">#FFFFFF</color>
+    <color name="background_grey">#f1f1f1</color>
     <color name="Cyan">#00bcd4</color>
     <color name="Red">#f44336</color>
+    <color name="oil">#333333</color>
+
+    <color name="middle_black">#666666</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="blue">#2c80f7</color>
 </resources>

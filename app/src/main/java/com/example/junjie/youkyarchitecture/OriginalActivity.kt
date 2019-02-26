@@ -129,8 +129,6 @@ class OriginalActivity : BaseActivity() {
                     transaction.show(mMineFragment!!)
                 }
             }
-
-
         }
         transaction.commit()
     }
