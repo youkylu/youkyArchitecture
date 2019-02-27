@@ -24,6 +24,12 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"
         ></activity>
+
+        <activity
+                android:name="com.example.home.my_file_manager.MyFileManagerActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"
+        ></activity>
     </application>
 
 </manifest>
