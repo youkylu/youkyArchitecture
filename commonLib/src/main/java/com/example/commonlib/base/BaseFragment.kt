@@ -81,6 +81,9 @@ abstract class BaseFragment  : Fragment(){
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         ARouter.getInstance().inject(this)
+        if (useEventBus()) {
+            EventBus.getDefault().register(this)
+        }
         return inflater?.inflate(attachLayoutRes(), null)
     }
 
@@ -93,9 +96,7 @@ abstract class BaseFragment  : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (useEventBus()) {
-            EventBus.getDefault().register(this)
-        }
+
         isViewPrepare = true
         initView(view)
         lazyLoadDataIfPrepared()
@@ -121,12 +122,15 @@ abstract class BaseFragment  : Fragment(){
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         if (useEventBus()) {
             EventBus.getDefault().unregister(this)
         }
+    }
 
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
 

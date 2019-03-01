@@ -153,15 +153,14 @@ class MyFileManagerActivity : BaseActivity() {
     @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun addPathChildView() {
         home_my_file_manager_activity_path_ll.removeAllViews()
-        for (str in pathStack) {
-
+        for ((count, str) in pathStack.withIndex()) {
             var filePathBgView = FilePathBackgroundView(this)
             filePathBgView.setText(str)
             filePathBgView.setTextColor(R.color.oil)
 
             filePathBgView.setItemClickListener(object : FilePathBackgroundView.OnClickListener {
                 override fun itemClick(v: View) {
-                    doPopAndUpdate(str)
+                    doPopAndUpdate(count)
                     findAllFiles(getShowPath(pathStack))
                 }
             })
@@ -171,10 +170,10 @@ class MyFileManagerActivity : BaseActivity() {
 
     }
 
-   fun doPopAndUpdate(str: String){
-        if(!TextUtils.equals(str, pathStack.peek())&&pathStack.size>1){
+    fun doPopAndUpdate(count: Int) {
+        if (pathStack.size - 1 != count) {
             pathStack.pop()
-            doPopAndUpdate(str)
+            doPopAndUpdate(count)
         }
     }
 }
