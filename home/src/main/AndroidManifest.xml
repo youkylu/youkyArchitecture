@@ -30,6 +30,13 @@
                 android:configChanges="orientation|keyboardHidden|screenSize"
                 android:screenOrientation="portrait"
         ></activity>
+
+        <activity
+                android:name="com.example.home.drag_rv.DragRecycleViewActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"
+        ></activity>
+
     </application>
 
 </manifest>

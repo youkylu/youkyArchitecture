@@ -1,14 +1,21 @@
 package com.example.home.my_file_manager
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.text.TextUtils
+import android.view.Gravity
 import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.commonlib.base.BaseActivity
 import com.example.commonlib.bean.FileEntity
 import com.example.commonlib.util.ToastUtil
+import com.example.commonlib.widget.FilePathBackgroundView
 import com.example.home.R
 
 import kotlinx.android.synthetic.main.home_my_file_manager_activity.*
@@ -35,43 +42,44 @@ class MyFileManagerActivity : BaseActivity() {
     private var fileEntityList: ArrayList<FileEntity> = ArrayList()
     private var sdRootPath = ""
     var fileManagerAdapter: FileManagerAdapter = FileManagerAdapter(this, fileEntityList)
-    private lateinit var currentFile: File
+//    private lateinit var currentFile: File
 
-    var s = Stack<String>()
+    var pathStack = Stack<String>()
 
     override fun attachLayoutRes(): Int {
         return R.layout.home_my_file_manager_activity
     }
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun initData() {
-        home_my_file_manager_activity_path_tv.text = "未知"
 
         home_my_file_manager_activity_rv.layoutManager = LinearLayoutManager(this)
         home_my_file_manager_activity_rv.adapter = fileManagerAdapter
         fileManagerAdapter.setOnItemClickListener(object : FileManagerAdapter.OnItemClickListener {
+
             override fun onFolderItemClick(view: View, position: Int) {
-                sdRootPath = fileEntityList[position].filePath
-                currentFile = File(sdRootPath)
-                findAllFiles(sdRootPath)
+                pathStack.add("/" + fileEntityList[position].fileName)
+                findAllFiles(getShowPath(pathStack))
             }
 
             override fun onFileItemClick(view: View, position: Int) {
                 ToastUtil.showShort(this@MyFileManagerActivity, R.string.app_name)
 
-                var selectIntent  = Intent()
+                var selectIntent = Intent()
                 var bundle = Bundle()
                 bundle.putSerializable("fileEntity", fileEntityList[position])
-                selectIntent.putExtras(bundle )
-                setResult( 55, selectIntent)
+                selectIntent.putExtras(bundle)
+                setResult(55, selectIntent)
                 finish()
             }
         })
 
-
-
         sdRootPath = Environment.getExternalStorageDirectory().absolutePath
-        currentFile = File(sdRootPath)
-        findAllFiles(sdRootPath)
+        if (pathStack.empty()) {
+            pathStack.add(Environment.getExternalStorageDirectory().absolutePath)
+        }
+
+        findAllFiles(getShowPath(pathStack))
     }
 
     override fun initView(savedInstanceState: Bundle?) {
@@ -91,6 +99,7 @@ class MyFileManagerActivity : BaseActivity() {
      * 查找path地址下所有文件
      * @param path
      */
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     private fun findAllFiles(path: String?) {
         fileEntityList.clear()
 
@@ -116,21 +125,56 @@ class MyFileManagerActivity : BaseActivity() {
             }
         }
         fileManagerAdapter.notifyDataSetChanged()
-        home_my_file_manager_activity_path_tv.text = sdRootPath
+
+
+        addPathChildView()
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
     override fun onBackPressed() {
-        if (TextUtils.equals(sdRootPath, Environment.getExternalStorageDirectory().absolutePath)) {
+        if (TextUtils.equals(getShowPath(pathStack), Environment.getExternalStorageDirectory().absolutePath)) {
             finish()
-        }else{
-            val parentPath = currentFile.parent
-            currentFile = File(parentPath)
-            sdRootPath = currentFile.absolutePath
-            findAllFiles(parentPath)
+        } else {
+            pathStack.pop()
+
+            findAllFiles(getShowPath(pathStack))
+        }
+    }
+
+    private fun getShowPath(stringStack: Stack<String>): String {
+        var path = ""
+        for (str in stringStack) {
+            path += str
+        }
+        return path
+    }
+
+    @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
+    private fun addPathChildView() {
+        home_my_file_manager_activity_path_ll.removeAllViews()
+        for (str in pathStack) {
+
+            var filePathBgView = FilePathBackgroundView(this)
+            filePathBgView.setText(str)
+            filePathBgView.setTextColor(R.color.oil)
+
+            filePathBgView.setItemClickListener(object : FilePathBackgroundView.OnClickListener {
+                override fun itemClick(v: View) {
+                    doPopAndUpdate(str)
+                    findAllFiles(getShowPath(pathStack))
+                }
+            })
+            home_my_file_manager_activity_path_ll.addView(filePathBgView)
         }
 
+
     }
 
-
+   fun doPopAndUpdate(str: String){
+        if(!TextUtils.equals(str, pathStack.peek())&&pathStack.size>1){
+            pathStack.pop()
+            doPopAndUpdate(str)
+        }
+    }
 }

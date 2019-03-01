@@ -9,6 +9,7 @@ import com.example.commonlib.base.BaseFragment
 import com.example.commonlib.bean.FileEntity
 import com.example.commonlib.constant.ARouterUrlConstant
 import com.example.commonlib.util.ToastUtil
+import com.example.home.drag_rv.DragRecycleViewActivity
 import com.example.home.my_file_manager.MyFileManagerActivity
 import kotlinx.android.synthetic.main.home_home_fragment.*
 
@@ -47,6 +48,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
         home_home_fragment_video_tv.setOnClickListener(this)
         home_home_fragment_system_file_manage_tv.setOnClickListener(this)
         home_home_fragment_my_file_manage_tv.setOnClickListener(this)
+        home_home_fragment_drag_rv_tv.setOnClickListener(this)
     }
 
     override fun onClick(v: View) {
@@ -59,6 +61,7 @@ class HomeFragment : BaseFragment(), View.OnClickListener {
                     MyFileManagerActivity::class.java
                 ), 1005
             )
+            R.id.home_home_fragment_drag_rv_tv->startActivity(Intent(activity, DragRecycleViewActivity::class.java))
             else -> {
 
             }
